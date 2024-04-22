@@ -1,45 +1,27 @@
-<!doctype html>
-<html>
-  <head>
-    {% include head.html %}
-  </head>
+---
+layout: compress
+---
 
-<body>
+{% include head.html %}
 
-  <div class="container">
-    {% include header.html %}
+    <main>
 
-    <div class="post-container">
-      <article id = "post">
-        <h2 id = "post-title">{{ page.title }}</h2>
+        {% include header.html %}
 
-  {% if site.data.settings.date-under-post.active %}
-  <div class = "post-info">
-    <span>
-        <i class="far fa-calendar" aria-hidden="true"></i> <span>{{ page.date | date_to_string }}</span> - <i class="far fa-clock"></i> {% include reading_time.html %}
-    </span>
-  </div>
-  {% endif %}
-        {{ content }}
-      </article>
-    </div>
-    {% if site.data.settings.categories.active %}
-      {% include categories.html %}
-    {% endif %}
+        <article>
+            <h1>{{ page.title }}</h1>
+            <p class="subtitle">{{ page.date | date: "%b %-d, %Y" }}</p>
 
-    {% if site.data.settings.related-posts.active %}
-      {% include related-posts.html %}
-    {% endif %}
+            {{ page.content }}
 
-    {% if site.data.settings.comments %}
-      {% include comments.html %}
-    {% endif %}
-  </div>
+            <hr>
 
-{%- include footer.html -%}
+            <p><a href="{{ site.baseurl }}/articles">← Back to all articles</a></p>
+        </article>
 
-{% if site.data.settings.mathjax.active %}
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-{% endif %}
+    </main>
+
+    {% include footer-post.html %}
+
 </body>
 </html>
